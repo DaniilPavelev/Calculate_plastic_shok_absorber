@@ -1,6 +1,15 @@
 package org.example;
 
 public class Calculator {
+    double l = 19.4/100;
+    double mu = 0.25;
+    double m = 1/mu;
+    double q_m = 0.2783*mu - 0.9038*mu + 1.3784;
+
+    double B = 100;
+
+
+    double r = 0.9;
     P p1=new P();
     P p2=new P();
     P p3=new P();
@@ -14,7 +23,6 @@ public class Calculator {
     boolean plast = false;
     double R44;
     double R22;
-
 
     public double calculate(double x,double dx){
 
@@ -104,7 +112,6 @@ public class Calculator {
         p3.R = P0;
         p3.x = x;
     }
-
     //разгрузка или повторное нагружение при пластичности
     private void unloading_or_reloading_at_plasticity(double x){
         P0 = p3.P;
@@ -114,14 +121,12 @@ public class Calculator {
         R0 = p3.R;
         if(P0/R0 > 1) R0 = 0;
     }
-
     private void calcP14(double x){
         p1.calcP(x);
         p2.calcP(x);
         p3.calcP(x);
         p4.calcP(x);
     }
-
     // TODO: добавить ввод из консоли
     //метод задающий характеристики пластического амортизатора
     public void setFeaturesAbsorber(){
@@ -168,5 +173,17 @@ public class Calculator {
 
         return c_and_s;
     }
+
+
+    public double calcV(double P){
+
+        return Math.cos( Math.pow(P,m) * Math.pow(l,2*m)/(2*10*0.95*Math.pow(r,2*m+1)));
+
+    }
+
+    public double calcX(double P){
+        return Math.pow(P,m) * Math.pow(l,2*m)/(2*B*q_m*Math.pow(r,2*m+1));
+    }
+
 
 }
