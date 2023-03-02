@@ -1,10 +1,10 @@
 package org.example;
 
 public class Test {
-    public double x;
-    public double P;
+    public int x;
+    public int P;
 
-    public Test(double x, double p) {
+    public Test(int x, int p) {
         this.x = x;
         P = p;
     }
